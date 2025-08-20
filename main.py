@@ -13,7 +13,30 @@ def main():
     else:
         tracks = pd.read_csv(file)
 
-    print(tracks.head)
+    while True:
+        action = input(
+            'What do you want to do?\n' 
+            'Consult progress (C)\n'
+            'Add excercise (A)\n'
+            'Delete excercise (D)\n'
+            'Update excercise name (U)\n'
+            'Exit (E)\n'
+            'Selection: '
+            ).upper()
+
+        match action:
+            case "C":
+                print(action)
+            case "A":
+                print(action)
+            case "D":
+                print(action)
+            case "U":
+                print(action)
+            case "E":
+                break
+            case _:
+                print('No valid selection entered!')
 
 if __name__ == '__main__':
     main()
