@@ -16,10 +16,11 @@ def main():
     while True:
         action = input(
             'What do you want to do?\n' 
-            'Consult progress (C)\n'
+            'Consult progress (P)\n'
             'Add excercise (A)\n'
             'Delete excercise (D)\n'
-            'Update excercise name (U)\n'
+            'Update excercise weigth/reps (U)\n'
+            'Change excercise name (C)\n'
             'Exit (E)\n'
             'Selection: '
             ).upper()
