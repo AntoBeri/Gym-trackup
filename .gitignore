@@ -207,4 +207,4 @@ marimo/_lsp/
 __marimo__/
 
 # User generated csv database
-data/tracks.csv
+csv_db/data/tracks.csv
