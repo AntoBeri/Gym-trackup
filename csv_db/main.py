@@ -1,13 +1,15 @@
 import pandas as pd
+import modify as mod
+import analytics as any
 from pathlib import Path
 
 
 def main():
     # Load the template and create your own file
     file = Path('Gym-trackup/csv_db/data/tracks.csv')
+    template = pd.read_csv('Gym-trackup/csv_db/data/template.csv')
 
     if not file.exists():
-        template = pd.read_csv('Gym-trackup/csv_db/data/template.csv')
         tracks = pd.DataFrame(columns=template.columns)
         tracks.to_csv('Gym-trackup/csv_db/data/tracks.csv', index=False)
     else:
@@ -27,9 +29,21 @@ def main():
 
         match action:
             case "P":
-                print(action)
+                decision = input(
+                    'What you want to check from your excercises:\n'
+                    'Print excercises table (P)\n'
+                ).upper()
+                
+                match decision:
+                    case 'P':
+                        ordered_t = pd.DataFrame(columns=template.columns)
+                        any.show_table(tracks, ordered_t)
+                    case _:
+                        print('Not valid selection entered!')
             case "A":
-                print(action)
+                mod.addExcercise(tracks)
+
+                tracks.to_csv('Gym-trackup/csv_db/data/tracks.csv', index=False)
             case "D":
                 print(action)
             case "U":
