@@ -5,10 +5,11 @@ from pathlib import Path
 
 
 def main():
-    # Load the template and create your own file
+    # Load the template and the path were the database should be
     file = Path('Gym-trackup/csv_db/data/tracks.csv')
     template = pd.read_csv('Gym-trackup/csv_db/data/template.csv')
 
+    # Check if the database exist, if not create it
     if not file.exists():
         tracks = pd.DataFrame(columns=template.columns)
         tracks.to_csv('Gym-trackup/csv_db/data/tracks.csv', index=False)
@@ -28,7 +29,7 @@ def main():
             ).upper()
 
         match action:
-            case "P":
+            case "P": 
                 decision = input(
                     'What you want to check from your excercises:\n'
                     'Print excercises table (P)\n'
@@ -41,7 +42,7 @@ def main():
                     case _:
                         print('Not valid selection entered!')
             case "A":
-                mod.addExcercise(tracks)
+                mod.add_excercise(tracks)
 
                 tracks.to_csv('Gym-trackup/csv_db/data/tracks.csv', index=False)
             case "D":

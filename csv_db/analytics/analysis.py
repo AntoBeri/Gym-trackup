@@ -1,9 +1,25 @@
+from pandas import DataFrame
 import modify as mods
 
-def show_table (df, ordered):
+def show_table (df: DataFrame, ordered: DataFrame):
+    """
+    
+    Takes a DataFrame with the registered excercises and selects the most recent register
+    of each registered eaxcercise and prints it as a table.
+
+    Args:
+        df (DataFrame): DataFrame containing the registered excercises.
+        ordered (DataFrame): DataFrame used to store the most recent registrations.
+    
+    Returns:
+        None
+
+    """
+    # Iterate through the excercies in the DataFrame
     for excercise in df.itertuples(index=False):
 
-        if excercise.Excercise in ordered['Excercise']:
+        # If the current excercise has already been filtered it continues to the next excercise
+        if excercise.Excercise in ordered['Excercise'].values:
             continue
         else:
             for other_excercise in df.itertuples(index=False):
@@ -16,12 +32,15 @@ def show_table (df, ordered):
                         n_eo = int(eo)
 
                         if n_e > n_eo:
-                            ordered.loc[len(ordered)] = list(excercise)
+                            excercise_list = list(excercise)
+                            break
                         elif n_eo > n_e:
-                            ordered.loc[len(ordered)] = list(other_excercise)
-                    
-                    continue
+                            excercise_list = list(other_excercise)
+                            break
 
-                ordered.loc[len(ordered)] = list(excercise)
+                elif excercise.Excercise == other_excercise.Excercise:
+                    excercise_list = list(excercise)
+            
+            mods.add_excercise(ordered, 'a', excercise_list)
     
     print(ordered)

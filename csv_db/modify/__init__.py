@@ -1,3 +1,3 @@
-from .mods import addExcercise
-from .mods import removeExcercise
-from .mods import updateVal
+from .mods import add_excercise
+from .mods import remove_excercise
+from .mods import update_val
